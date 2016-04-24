@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchWorldNews } from '../actions/index';
+import { Link } from 'react-router';
+import * as actions from '../actions';
 
 class World extends Component {
+  componentWillMount() {
+    this.props.fetchWorldNews();
+  }
+
   render() {
     return (
       <div>
@@ -10,4 +18,8 @@ class World extends Component {
   }
 }
 
-export default World;
+function mapStateToProps(state) {
+  return { world: state.world };
+}
+
+export default connect(mapStateToProps, actions)(World);

@@ -24,7 +24,7 @@ class Header extends Component {
               <Link to='/technology'> Technology </Link>
             </li>
             <li className="nav-item">
-              <Link to='/entertainment'> Entertainment </Link>
+              <Link to='/sports'> Sports </Link>
             </li>
           </ul>
         </nav>
