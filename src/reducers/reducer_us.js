@@ -4,7 +4,7 @@ import { FETCH_US_NEWS } from '../actions/index';
 export default function(state = [], action) {
   switch (action.type) {
     case FETCH_US_NEWS:
-    return [ ...state, action.payload ]
+    return [ ...state, action.payload.data ]
   }
   return state;
 }

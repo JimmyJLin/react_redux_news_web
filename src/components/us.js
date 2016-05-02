@@ -18,13 +18,21 @@ class Us extends Component {
   }
 
   renderNews() {
-    return this.props.us.map((results) => {
-      console.log('props', this.props.us)
-      return (
-        <li className='list-group-item' key={results.id}>
-        <span>Title: {results.title}</span>
-        </li>
-      )
+    const newsFeed = this.props.us[0]
+    return this.props.us.map((result) => {
+      console.log('props.results', this.props.us[0].results)
+      return result.results.map((oneNews) => {
+        return (
+          <li className='list-group-item' key={oneNews.created_date}>
+            <a href={oneNews.url} target="_blank">
+              <strong>{oneNews.title}</strong>
+              <p>By: {oneNews.byline}</p>
+              <p>Abstract: {oneNews.abstract}</p>
+            </a>
+          </li>
+        )
+
+      })
     })
   }
 
