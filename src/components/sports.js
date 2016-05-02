@@ -2,29 +2,29 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSportsNews } from '../actions/index';
 import { Link } from 'react-router';
-import * as actions from '../actions';
-import _ from 'lodash';
 
 class Sports extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = { sports: this.props.fetchSportsNews()};
+  componentWillMount() {
+    this.props.fetchSportsNews();
+
   }
 
-  // componentWillMount() {
-  //   this.props.fetchUsNews();
-  //
-  // }
-
   renderNews() {
-    return this.props.sports.map((results) => {
-      console.log('state', this.state.sports)
-      return (
-        <li className='list-group-item' key={results.id}>
-        <span>Title: {results.title}</span>
-        </li>
-      )
+    return this.props.sports.map((result) => {
+
+      return result.results.map((oneNews) => {
+        return (
+          <li className='list-group-item' key={oneNews.created_date}>
+            <a href={oneNews.url} target="_blank">
+              <strong>{oneNews.title}</strong>
+              <p>{oneNews.byline}</p>
+              <p>{oneNews.abstract}</p>
+            </a>
+          </li>
+        )
+      })
+
     })
   }
 
@@ -45,4 +45,4 @@ function mapStateToProps(state) {
   return { sports: state.sports };
 }
 
-export default connect(mapStateToProps, actions)(Sports);
+export default connect(mapStateToProps, {fetchSportsNews})(Sports);

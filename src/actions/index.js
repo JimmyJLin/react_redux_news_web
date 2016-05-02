@@ -31,8 +31,6 @@ export function fetchWorldNews() {
 export function fetchBusinessNews() {
   const request = axios.get(`${ROOT_RUL}/business.json${API_KEY}`)
 
-  console.log('Request:', request)
-
   return {
     type: FETCH_BUSINESS_NEWS,
     payload: request
